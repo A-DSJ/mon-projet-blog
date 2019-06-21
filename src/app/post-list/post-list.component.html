@@ -1,0 +1,10 @@
+<div class="card" style="width: 35rem;">    
+    <div class="card-body">
+      <h3 class="card-title">{{ postTitre }}</h3>      
+      <p style="font-size: 12px;">Posté le : {{ postDate | date : 'mediumDate'}}</p>
+      <p [ngClass]="{'NotGoodPost': likeCount < 0,
+      'GoodPost' : likeCount > 0}"  class="card-text">{{ postContenu }}</p>
+      <button type="button"  class="btn btn-primary card-link" (click)="evolutionCompteur(true)">Bien !!</button>
+      <button type="button"  class="btn btn-danger card-link" (click)="evolutionCompteur(false)">Pas Bien !!</button>
+    </div>
+  </div>

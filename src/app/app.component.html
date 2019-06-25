@@ -3,7 +3,7 @@
         <div class="col-xs-12">
           <h1> Un blog original </h1>
           <div class="container">
-            <app-post-list *ngFor="let post of posts" [postTitre]="post.title" [postContenu]="post.content" [postDate]="post.created_at" [likeCount]="post.loveIts"></app-post-list>
+            <router-outlet></router-outlet>  
           </div>          
       </div>
 </div>

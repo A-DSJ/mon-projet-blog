@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { $ } from 'protractor';
+import { Post } from '../models/Post.model';
+import { Subscription } from 'rxjs';
+import { PostsService } from '../services/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-list',
@@ -9,18 +13,26 @@ import { $ } from 'protractor';
 
 export class PostListComponent implements OnInit {
  
-  @Input() postTitre: string;
-  @Input() postContenu: string;
-  @Input() likeCount: number;
-  @Input() postDate: Date;
+  posts : Post[];
+  postsSubscription: Subscription;
 
-  constructor() { }
+  constructor(private PostsService: PostsService, private router: Router) { }
 
   ngOnInit() {
+    this.postsSubscription = this.PostsService.postSubject.subscribe(
+      (posts : Post[]) =>{
+        this.posts = posts;
+      }
+    );
+    this.PostsService.emitPosts();
+  }
+
+  onDeletePost(post: Post){
+    this.PostsService.removePost(post);
   }
 
   evolutionCompteur(isGood: boolean)
   {   
-    this.likeCount = isGood ? ++this.likeCount : --this.likeCount ;
+
   }
 }

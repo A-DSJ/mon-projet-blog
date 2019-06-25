@@ -4,6 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule} from '@angular/forms';
 import { PostListComponent } from './post-list/post-list.component';
+import { PostsService } from './services/posts.service';
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'posts', component: PostListComponent},
+  { path: '', redirectTo:'posts', pathMatch: 'full'},
+  { path:'**', redirectTo: 'posts'}
+]
 
 @NgModule({
   declarations: [
@@ -12,9 +20,12 @@ import { PostListComponent } from './post-list/post-list.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    PostsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

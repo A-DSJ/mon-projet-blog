@@ -49,7 +49,7 @@ export class PostsService {
                 }
             }
         );        
-        this.posts.slice(postIndexToRemove,1);        
+        this.posts.splice(postIndexToRemove,1);        
         this.emitPosts();
     }
 }

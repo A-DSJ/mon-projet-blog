@@ -31,8 +31,8 @@ export class PostListComponent implements OnInit {
     this.PostsService.removePost(post);
   }
 
-  evolutionCompteur(isGood: boolean)
+  evolutionCompteur(isGood: boolean, post: Post)
   {   
-
+    this.PostsService.likeCount(isGood, post)
   }
 }

@@ -52,4 +52,17 @@ export class PostsService {
         this.posts.splice(postIndexToRemove,1);        
         this.emitPosts();
     }
+
+    likeCount(isLike: boolean, post: Post){
+      console.log('update')
+      const postIndexToUpdate = this.posts.findIndex(
+        (postEl) => {
+            if(postEl === post){                    
+                return true
+            }
+        }
+      ); 
+      this.posts[postIndexToUpdate].loveIts = isLike ? ++this.posts[postIndexToUpdate].loveIts : --this.posts[postIndexToUpdate].loveIts;
+      this.emitPosts();
+    }
 }
